@@ -15,7 +15,7 @@ import PageSearch from '../pages/PageSearch';
 
 function AppRouter() {
   return (
-    <Router>
+    <Router basename="/slate">
       <div className="wrapper">
         <Header />
         <Routes>

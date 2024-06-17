@@ -1,31 +1,42 @@
-import { useState } from 'react';
-import { setStorage, getStorage, removeMovieFromStorage } from '../utilities/localStorageUtils';
-import { BsPlusCircle, BsPlusCircleFill } from 'react-icons/bs';
+import { useState } from "react"
+import { BsPlusCircle, BsPlusCircleFill } from "react-icons/bs"
 
-function AddToWatch(props) {
-  const [watchlistMovies, setWatchlistMovies] = useState(getStorage('watchlistMovies'));
 
-  function addToWatchlist(movie) {
-    const updatedWatchlist = [...watchlistMovies, movie];
-    setWatchlistMovies(updatedWatchlist);
-    setStorage(updatedWatchlist, 'watchlistMovies');
-  }
+function AddToWatch({ movieObj }) {
+
+  //checking what movies are already in localstorage
+  const [addedMovies, setAddedMovies] = useState(() => {
+    const watchlist = JSON.parse(localStorage.getItem('watchlist')) || []
+    return watchlist.some(movie => movie.id === movieObj.id)
+    
+  })
   
-  // to remove the movie from the array once the add to watch button clicked again
-  function removeFromWatchlist(index) {
-    const updatedWatchlist = [...watchlistMovies];
-    updatedWatchlist.splice(index, 1);
-    setWatchlistMovies(updatedWatchlist);
-    removeMovieFromStorage(index, 'watchlistMovies');
+  //handle onclick: if the movie is already in localstorage - remove it, else - add it
+  const toggleMovieAdded = () => {
+    const watchlist = JSON.parse(localStorage.getItem('watchlist')) || []
+    const index = watchlist.findIndex(movie => movie.id === movieObj.id)
+    
+    if (index === -1) {
+      const updatedMovies = [...watchlist, movieObj]
+      localStorage.setItem('watchlist', JSON.stringify(updatedMovies))
+    } 
+    else {
+      watchlist.splice(index, 1)
+      localStorage.setItem('watchlist', JSON.stringify(watchlist))
+    }
+
+    setAddedMovies(prevAddedMovie => !prevAddedMovie)
   }
-  const isMovieAdded = watchlistMovies.some((addedMovie) => addedMovie.id === props.movie.id);
-  const addedMovieIndex = watchlistMovies.findIndex((addedMovie) => addedMovie.id === props.movie.id);
 
   return (
-    <button className="add-watchlist-btn" onClick={isMovieAdded ? () => removeFromWatchlist(addedMovieIndex) : () => addToWatchlist(props.movie)}>
-      {isMovieAdded ? <BsPlusCircleFill /> : <BsPlusCircle/>}
+    <button
+      onClick={toggleMovieAdded}
+      className="add-watchlist-btn"
+    >
+      {addedMovies ? <BsPlusCircleFill /> : <BsPlusCircle />}
     </button>
-  );
+  )
 }
 
 export default AddToWatch
+
