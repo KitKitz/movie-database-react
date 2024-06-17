@@ -26,7 +26,7 @@ function AddToWatch({ movieObj }) {
     }
 
     setAddedMovies(prevAddedMovie => !prevAddedMovie)
-  };
+  }
 
   return (
     <button
@@ -35,7 +35,7 @@ function AddToWatch({ movieObj }) {
     >
       {addedMovies ? <BsPlusCircleFill /> : <BsPlusCircle />}
     </button>
-  );
+  )
 }
 
 export default AddToWatch

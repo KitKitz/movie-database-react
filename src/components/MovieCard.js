@@ -11,8 +11,6 @@ import AddToWatch from "./AddToWatch";
 
 
 function MovieCard({ movieObj, id }) {
-  //addedMovies is needed to keep track of what movies are added to the watchlist
-  //! const addedMovies = getStorage("watchlistMovies");
 
   // to change the length of the overview depending on the poster size
   const [isLarge, setIsLarge] = useState(false);
@@ -37,22 +35,6 @@ function MovieCard({ movieObj, id }) {
       }
     };
   }, []);
-
-  //add to watch
-  // const [moviesToWatch, setMoviesToWatch] = useLocalStorage("movies", [])
-
-//   const addMovieToWatch = () => {
-//     const moviesToWatchJSON = localStorage.getItem('watchlist');
-//     let moviesToWatch = [];
-
-//     if (moviesToWatchJSON) {
-//         moviesToWatch = JSON.parse(moviesToWatchJSON);
-//     }
-
-//     const updatedMovies = [...moviesToWatch, movieObj];
-//     localStorage.setItem('watchlist', JSON.stringify(updatedMovies));
-// }
-
 
   // format the overview
   const wordLimit = isLarge ? 160 : 80;

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/slate/static/css/main.c661c74f.css",
+    "main.js": "/slate/static/js/main.5fbb72c7.js",
+    "static/media/no-movie-poster.jpg": "/slate/static/media/no-movie-poster.615e1541b45a16b288ff.jpg",
+    "static/media/tmdb-logo.svg": "/slate/static/media/tmdb-logo.bf7f470b3821af1da7fa249c87dadea3.svg",
+    "index.html": "/slate/index.html",
+    "main.c661c74f.css.map": "/slate/static/css/main.c661c74f.css.map",
+    "main.5fbb72c7.js.map": "/slate/static/js/main.5fbb72c7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c661c74f.css",
+    "static/js/main.5fbb72c7.js"
+  ]
+}
